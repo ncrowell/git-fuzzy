@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>git-fuzzy by joshdick</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">git-fuzzy</h1>
+        <p class="header">Makes Git a little fuzzier.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/joshdick/git-fuzzy/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/joshdick/git-fuzzy/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/joshdick/git-fuzzy">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/joshdick">joshdick</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="git-fuzzy" class="anchor" href="#git-fuzzy"><span class="octicon octicon-link"></span></a>git-fuzzy</h1>
+
+<p>Makes Git a little fuzzier.</p>
+
+<p><em>by <a href="http://joshdick.net">Josh Dick</a></em></p>
+
+<h2>
+<a name="install-it" class="anchor" href="#install-it"><span class="octicon octicon-link"></span></a>Install It</h2>
+
+<pre><code>npm install -g git-fuzzy
+</code></pre>
+
+<h2>
+<a name="use-it" class="anchor" href="#use-it"><span class="octicon octicon-link"></span></a>Use It</h2>
+
+<p>Installing <code>git-fuzzy</code> should have made it available on your <code>$PATH</code>.</p>
+
+<p><code>git-fuzzy</code> is a wrapper for Git at the command line. Use Git just like you normally would, except prefix your Git arguments with "fuzzy".</p>
+
+<p>If the last argument looks like a filename, <code>git-fuzzy</code> will attempt to fuzzy match it to the name of a file that has been modified in the working directory of your Git repository. Otherwise, <code>git-fuzzy</code> will just pass your Git arguments through to Git, unmodified.</p>
+
+<p>For example:</p>
+
+<pre><code>&gt; git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#   modified:   another/very/long/path/myawesomefile.ext
+#   modified:   some/really/long/path/anotherfile.ext
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+&gt; git fuzzy add awesome
+
+&gt; git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#   modified:   another/very/long/path/myawesomefile.ext
+#
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+# modified:   some/really/long/path/anotherfile.ext
+#
+</code></pre>
+
+<p>Typical uses of <code>git-fuzzy</code> include things like:</p>
+
+<pre><code>&gt; git fuzzy add somefile
+
+&gt; git fuzzy reset HEAD somefile
+
+&gt; git fuzzy checkout somefile
+</code></pre>
+
+<h2>
+<a name="to-do" class="anchor" href="#to-do"><span class="octicon octicon-link"></span></a>To Do</h2>
+
+<ul>
+<li>Attempt to fuzzy-match against <a href="https://www.kernel.org/pub/software/scm/git/docs/">tree-ish</a>es in addition to filenames.</li>
+<li>Attempt to fuzzy-match against all files in the repository, instead of just those that were modified in the working directory.</li>
+<li>Attempt to fuzzy-match exact paths, since <code>git-fuzzy</code> treats these as ambiguous.</li>
+<li>Attempt to fuzzy-match against multiple arguments, or at least arguments other than the last one.</li>
+</ul><h2>
+<a name="disclaimer" class="anchor" href="#disclaimer"><span class="octicon octicon-link"></span></a>Disclaimer</h2>
+
+<p>I take no responsibility if <code>git-fuzzy</code> does unexpected or destructive things to your computer or Git repository. Use it at your own risk. It Works For Me™.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><code>git-fuzzy</code> is copyright (c) Joshua Dick, and is licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. <code>git-fuzzy</code> depends on <a href="https://github.com/mattyork/fuzzy"><code>fuzzy</code></a>, which is released under the same license.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
