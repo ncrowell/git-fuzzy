@@ -16,6 +16,7 @@ var createExecHandler = function(stdoutHandler) {
 };
 
 var exec  = require("child_process").exec,
+    kexec = require("kexec"),
     path  = require("path"),
     fuzzy = require("fuzzy");
 
@@ -70,20 +71,16 @@ if (process.argv.length === 3 || last_arg.charAt(0) === "-") {
                 for (var j = 0; j < matches.length; j++) {
                     console.error("\t" + matches[j]);
                     process.exit(1);
+                } else {
+                    exec("git rev-parse --show-toplevel",
+                            createExecHandler(function(git_root) {
+                                var git_args = git_args.join(" "),
+                                    match_paths = matches.map(function(match) {
+                                    '"' + path.join(git_root, match) + '"';
+                                }).join(" ");
+                                kexec(["git", git_args, match_paths].join(" "));
+                            }));
                 }
-            } else {
-               exec("git rev-parse --show-toplevel",
-                   createExecHandler(function(git_root) {
-                       exec("git " + git_args.join(" ") + " " + '"' + path.join(git_root, matches[0]) + '"',
-                           createExecHandler(function(stdout) {
-                               if (stdout) { console.log(stdout); }
-                           })
-                       );
-                   })
-               );
-
-            }
-        })
+            })
     );
-
 }
